@@ -1,6 +1,6 @@
-CREATE DATABASE your_db_name;
+CREATE DATABASE skill;
 
-USE your_db_name;
+USE skill;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,

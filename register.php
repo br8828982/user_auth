@@ -7,11 +7,12 @@ redirectIfAuthenticated('index.php');
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Registration</title>
 </head>
 <body>
     <h2>Registration Form</h2>
-    <form action="auth.php" method="post">
+    <form id="register-form" method="post">
         <input type="hidden" name="register" value="true">
         <label for="username">Username:</label>
         <input type="text" name="username" required><br><br>
@@ -21,5 +22,7 @@ redirectIfAuthenticated('index.php');
 
         <input type="submit" value="Register">
     </form>
+
+    <script src="ajax.js"></script>
 </body>
 </html>

@@ -5,11 +5,9 @@ function createUser($username, $password) {
     global $pdo;
 
     try {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
         $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
         $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":password", $hashedPassword);
+        $stmt->bindParam(":password", $password);
         $stmt->execute();
 
         return true;
