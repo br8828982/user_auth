@@ -15,10 +15,10 @@ redirectIfAuthenticated('index.php');
     <form id="register-form" method="post">
         <input type="hidden" name="register" value="true">
         <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
+        <input type="text" name="username"><br><br>
 
         <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="password"><br><br>
 
         <input type="submit" value="Register">
     </form>

@@ -15,11 +15,11 @@ async function handleAuth(formId) {
         body: formData,
       });
 
-      const result = await response.json();
-      alert(result.message);
+      const {success, message, redirect} = await response.json();
+      alert(message);
 
-      if (result.status) {
-        window.location.href = result.redirect;
+      if (success) {
+        window.location.href = redirect;
       }
     } catch (error) {
       console.error("Error:", error);
