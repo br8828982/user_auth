@@ -10,7 +10,7 @@ function register() {
     $password = sanitizeInput($_POST["password"]);
 
     if (empty($username) || empty($password)) {
-        echo json_encode(["status" => false, "message" => "Both username and password are required."]);
+        echo json_encode(["success" => false, "message" => "Both username and password are required."]);
         exit();
     }
 
@@ -43,17 +43,22 @@ function login() {
     $password = sanitizeInput($_POST["password"]);
 
     if (empty($username) || empty($password)) {
-        echo json_encode(["status" => false, "message" => "Both username and password are required."]);
+        echo json_encode(["success" => false, "message" => "Both username and password are required."]);
         exit();
     }
 
     $user = getUserByUsername($username);
 
+    if (!$user) {
+        echo json_encode(["success" => false, "message" => "User not found."]);
+        exit();
+    }
+
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         echo json_encode(["success" => true, "message" => "Login successful!", "redirect" => "index.php"]);
     } else {
-        echo json_encode(["success" => false, "message" => "Invalid login credentials."]);
+        echo json_encode(["success" => false, "message" => "Password not matched."]);
     }
 }
 
