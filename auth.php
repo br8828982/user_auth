@@ -24,7 +24,7 @@ function register() {
         exit();
     }
 
-    if (getUserByUsername($username)) {
+    if (fetchUser($username)) {
         echo json_encode(["success" => false, "message" => "Username already exists."]);
         exit();
     }
@@ -47,7 +47,7 @@ function login() {
         exit();
     }
 
-    $user = getUserByUsername($username);
+    $user = fetchUser($username);
 
     if (!$user) {
         echo json_encode(["success" => false, "message" => "User not found."]);

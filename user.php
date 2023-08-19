@@ -17,7 +17,7 @@ function createUser($username, $password) {
     }
 }
 
-function getUserByUsername($username) {
+function fetchUser($username) {
     global $pdo;
 
     try {
