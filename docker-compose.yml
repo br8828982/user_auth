@@ -1,0 +1,38 @@
+version: '3'
+services
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: your_db_root_password
+      MYSQL_DATABASE: your_db_name
+      MYSQL_USER: your_db_username
+      MYSQL_PASSWORD: your_db_password
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - mynetwork
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: your_db_root_password
+    ports:
+      - "8081:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
